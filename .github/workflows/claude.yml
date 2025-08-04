@@ -2,7 +2,7 @@ name: Researcher
 
 on:
   pull_request:
-    types: [opened]
+    types: [opened, synchronized]
 
 jobs:
   lit-review:
@@ -39,7 +39,7 @@ jobs:
                 }
               }
             }
-          allowed-tools: "Edit,MultiEdit,Glob,Grep,LS,Read,Write,mcp__github_comment__update_claude_comment,Bash(git add:*),Bash(git commit:*),Bash(git push:*),Bash(git status:*),Bash(git diff:*),Bash(git log:*),Bash(git rm:*),mcp__search__web_search_exa"
+          allowed-tools: "mcp__search__web_search_exa"
   ideas:
     if: startsWith(github.head_ref, 'ideas/')
     runs-on: ubuntu-latest

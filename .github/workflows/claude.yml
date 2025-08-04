@@ -96,6 +96,7 @@ jobs:
             Check run.jsonl and experiments/ to see what has been done in the past. 
             Choose an experiment from proposal.jsonl and run it. 
             Use experiments/example_bitflip_001/ as a template for the folder to create and run in.
+            For data, store it in the data/ folder.
             In your experiments/<exp_id>/, update plan.md with your plan.
             In your experiments/<exp_id>/, run your experiment in the run/ folder.
             Once done:

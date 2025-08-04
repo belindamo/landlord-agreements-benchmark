@@ -1,3 +1,5 @@
+# Experiment Runs
+
 ### **Problem Description**
 
 Consumers struggle to interpret rental leases and eviction settlement offers filled with jargon and hidden conditions. Without clear explanations, tenants may sign punitive clauses or miss key obligations. No existing benchmark tests whether AI systems can reliably perform end‑to‑end contract comprehension in such real‑world scenarios. We therefore propose a new evaluation benchmark focused on U.S. residential leases and eviction‑related agreements.
@@ -56,3 +58,6 @@ The first release targets U.S. landlord‑tenant law only, uses public‑domain 
 Related projects:
 - Eviction Settlement project idea: https://www.justicebench.org/project/eviction-settle
 - Lease Analyzer project idea: https://www.justicebench.org/project/lease-analyzer
+
+---
+*This section is being enhanced by The Research Company AI Agent*

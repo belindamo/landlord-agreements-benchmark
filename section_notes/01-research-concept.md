@@ -1,14 +1,3 @@
-# Research Concept & Direction
-
-## Bit & Flip
-- **Bit** (Problem): 
-- **Flip** (Solution): 
-
-## Research Direction
-
-
-## Key Questions
-
-
-## Expected Impact
-
+Related projects:
+- Eviction Settlement project idea: https://www.justicebench.org/project/eviction-settle
+- Lease Analyzer project idea: https://www.justicebench.org/project/lease-analyzer

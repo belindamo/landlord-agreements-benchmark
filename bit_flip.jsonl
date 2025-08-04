@@ -1,2 +1,3 @@
-{"bit": "Traditional research workflows lack systematic tracking", "flip": "Structured bit-flip methodology with JSONL data tracking", "impact": "Improved research velocity and reproducibility", "timestamp": "2025-08-04T20:33:41.393Z", "status": "active"}
-{"bit": "Research progress is often opaque and hard to reproduce", "flip": "Git-based versioning with automated AI assistance for research tasks", "impact": "Transparent, reproducible research with accelerated discovery cycles", "timestamp": "2025-08-04T20:33:41.393Z", "status": "active"}
+version https://git-lfs.github.com/spec/v1
+oid sha256:e2b6f11468e081558e510277c3f146fa393f02586ee9c835b67dc65363ff0185
+size 2332

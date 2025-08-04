@@ -1,5 +1,7 @@
 # Literature Review
 
+# Literature Review
+
 ## Key Papers
 *Add papers using the interface or edit directly*
 
@@ -11,3 +13,7 @@
 
 ## How Our Work Fits
 
+
+
+---
+*This section is being enhanced by The Research Company AI Agent*

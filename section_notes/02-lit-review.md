@@ -32,6 +32,24 @@
 - **Impact**: First specialized dataset (179 documents) and ALeaseBERT model for lease analysis
 - **Relevance**: Direct predecessor work in lease agreement analysis, demonstrates need for domain-specific approaches
 
+**PAKTON: A Multi-Agent Framework for Question Answering in Long Legal Agreements** (Filandrianos et al., 2025) ⭐ *Highly Relevant*
+- **Problem**: Contract review is complex, time-intensive, and inaccessible to non-experts; confidential documents require open-source solutions
+- **Key Insight**: Multi-agent collaborative frameworks with RAG components can democratize contract analysis while preserving privacy
+- **Impact**: Outperforms general-purpose and pretrained models in accuracy, explainability, and completeness
+- **Relevance**: Directly addresses consumer accessibility gap; demonstrates collaborative AI for legal comprehension
+
+**What to Read in a Contract? Party-Specific Summarization** (Sancheti et al., 2022) ⭐ *Highly Relevant*
+- **Problem**: Contract summarization needs vary by contracting party; generic summaries inadequate for different stakeholder perspectives
+- **Key Insight**: Party-specific importance ranking (tenant vs. landlord) essential for effective legal summarization
+- **Impact**: First party-specific legal summarization with ~293K expert-annotated sentence pairs from lease agreements
+- **Relevance**: Validates our party-specific approach; demonstrates effectiveness of expert annotation for legal AI
+
+**ContractNLI: A Dataset for Document-level Natural Language Inference for Contracts** (Koreeda & Manning, 2021)
+- **Problem**: Contract analysis requires document-level understanding rather than sentence-level tasks; existing approaches inadequate
+- **Key Insight**: Document-level NLI with span-based evidence identification handles complex legal linguistic patterns
+- **Impact**: 607 annotated contracts demonstrating unique challenges of legal document comprehension
+- **Relevance**: Validates document-level understanding approach; shows importance of evidence-grounded legal reasoning
+
 **CUAD: An Expert-Annotated NLP Dataset for Legal Contract Review** (Hendrycks et al., 2021)
 - **Problem**: Need large-scale expert-annotated dataset for legal contract analysis
 - **Key Insight**: Expert annotation essential for legal AI, transformer performance influenced by model design and data size
@@ -59,6 +77,18 @@
 - **Relevance**: Validates user-centered approach to legal document accessibility
 
 ### LLM-as-Judge Evaluation
+
+**LEXam: Benchmarking Legal Reasoning on 340 Law Exams** (Fan et al., 2025) ⭐ *Highly Relevant*
+- **Problem**: Long-form legal reasoning remains challenging despite test-time scaling advances; existing benchmarks inadequate
+- **Key Insight**: Law exams provide comprehensive framework testing issue spotting, rule recall, and rule application across legal domains
+- **Impact**: 4,886 questions from 340 law exams; demonstrates LLM limitations in structured multi-step legal reasoning
+- **Relevance**: Provides methodological framework for structured legal evaluation; validates LLM-as-judge with expert validation
+
+**LegalEval-Q: Quality Evaluation of LLM-Generated Legal Text** (Li & Wu, 2025) ⭐ *Highly Relevant*
+- **Problem**: Legal AI evaluation focuses on accuracy while neglecting linguistic quality (clarity, coherence, terminology)
+- **Key Insight**: Legal text quality requires specialized evaluation; model scaling shows diminishing returns after 14B parameters
+- **Impact**: Analysis of 49 LLMs reveals quality plateaus and importance of reasoning models over base architectures
+- **Relevance**: Critical for our evaluation methodology; validates need for quality assessment beyond accuracy in legal contexts
 
 **LLMs-as-Judges: A Comprehensive Survey** (Li et al., 2024)
 - **Problem**: Need scalable, automated evaluation of LLM outputs beyond traditional metrics
@@ -88,32 +118,36 @@
 
 ## Summary of Field
 
-The legal AI field shows three major research trends:
+The legal AI field shows four major research trends:
 
-**1. Specialized Legal Benchmarking**: Recognition that general language benchmarks inadequately measure legal AI capabilities. Multiple papers (LegalBench, LEXam, CaseHOLD) establish domain-specific evaluation as essential.
+**1. Specialized Legal Benchmarking**: Recognition that general language benchmarks inadequately measure legal AI capabilities. Multiple papers (LegalBench, LEXam, CaseHOLD, LegalEval-Q) establish domain-specific evaluation as essential, with emphasis on both accuracy and linguistic quality.
 
-**2. Document-to-Human Communication**: Growing focus on making legal documents accessible to non-experts through plain language conversion (Manor & Li, TermSight) rather than just expert-level analysis.
+**2. Consumer-Focused Legal Accessibility**: Emerging focus on making legal documents accessible to non-experts through intelligent interfaces (TermSight), party-specific summarization (Sancheti et al.), and multi-agent collaborative frameworks (PAKTON).
 
-**3. LLM-as-Judge Evaluation**: Convergence on LLM judges as scalable evaluation method with strong human correlation when properly calibrated and prompted.
+**3. Document-Level Understanding**: Shift from sentence-level tasks to comprehensive document analysis through document-level NLI (ContractNLI), multi-step reasoning (LEXam), and structured document processing approaches.
+
+**4. LLM-as-Judge Evaluation**: Convergence on LLM judges as scalable evaluation method with strong human correlation when properly calibrated and prompted, validated across multiple legal reasoning benchmarks.
 
 **Common Technical Assumptions Across Literature**:
 - Expert annotation is necessary for legal AI datasets
 - Domain-specific approaches outperform general methods
 - Document structure significantly impacts LLM performance  
 - Plain language conversion requires specialized techniques beyond standard summarization
-- LLM scaling generally improves legal task performance
+- Party-specific information needs vary significantly in legal contexts
+- Multi-agent and collaborative approaches improve complex legal reasoning
+- Quality evaluation must consider clarity, coherence, and terminology alongside accuracy
 
 ## Gaps Identified
 
-**1. Consumer-Focused Legal AI**: Most work targets legal professionals rather than end consumers who need legal documents explained in accessible terms.
+**1. Consumer-Focused Evaluation at Scale**: While recent work (TermSight, PAKTON) addresses accessibility, comprehensive benchmarks evaluating consumer comprehension across diverse legal documents remain limited.
 
-**2. Landlord-Tenant Specific Analysis**: Limited work specifically on landlord-tenant agreements despite widespread consumer need. Leivaditi et al. (2020) is closest but focuses on technical extraction rather than comprehension.
+**2. Landlord-Tenant Specific Analysis**: Limited work specifically on landlord-tenant agreements despite widespread consumer need. Leivaditi et al. (2020) provides technical extraction; Sancheti et al. (2022) shows party-specific summarization potential, but gap remains in comprehensive tenant-focused evaluation.
 
-**3. End-to-End Comprehension Evaluation**: Existing benchmarks test technical tasks (entity extraction, classification) rather than holistic document understanding and explanation.
+**3. Integrated Quality and Accessibility Assessment**: While LegalEval-Q addresses quality and TermSight addresses accessibility, no benchmark integrates linguistic quality assessment with consumer comprehension evaluation.
 
-**4. Real-World Document Complexity**: Most datasets use clean, well-formatted documents rather than the complex, varied formatting found in actual rental agreements.
+**4. Real-World Document Complexity**: Most datasets use clean, well-formatted documents rather than the complex, varied formatting found in actual rental agreements and consumer contracts.
 
-**5. LLM Judge Calibration for Legal Domain**: While general LLM judge frameworks exist, limited work on calibrating judges specifically for legal accuracy and plain language quality assessment.
+**5. Multi-Agent Consumer Applications**: While PAKTON demonstrates multi-agent contract analysis, limited exploration of collaborative AI specifically designed for consumer legal comprehension and decision-making.
 
 ## How Our Work Fits
 
@@ -128,9 +162,17 @@ Our landlord-tenant agreement benchmark addresses multiple identified gaps:
 - Uses LLM-as-judge methodology calibrated for legal accuracy and plain language quality
 - Addresses real-world document complexity with diverse formatting and clauses
 
-**Literature-Level Bit Flip**: Challenges the assumption that legal AI should focus on professional-level legal reasoning. Instead, we argue that the highest impact comes from making legal documents comprehensible to consumers who must live with the consequences of these agreements.
+**Literature-Level Bit Flip**: Challenges the assumption that legal AI evaluation should prioritize technical accuracy for professional use. Instead, we argue that the highest impact comes from evaluating AI's ability to make legal documents comprehensible and actionable for consumers who must live with the consequences of these agreements, requiring integrated assessment of accuracy, quality, and accessibility.
 
-**Building on Established Methods**: Leverages proven approaches (expert annotation from CUAD, LLM judge evaluation from survey literature, plain language focus from Manor & Li) while addressing identified gaps in consumer-focused legal AI.
+**Building on Established Methods**: Leverages proven approaches including:
+- Expert annotation methodology (CUAD, Sancheti et al.)
+- LLM judge evaluation with quality assessment (LEXam, LegalEval-Q)
+- Consumer accessibility design (TermSight)
+- Party-specific analysis (Sancheti et al.)
+- Document-level understanding (ContractNLI)
+- Multi-agent collaborative frameworks (PAKTON)
+
+While addressing identified gaps in comprehensive consumer-focused legal AI evaluation.
 
 This positions our work as both practically impactful (addressing real consumer needs) and methodologically novel (first comprehensive consumer-oriented legal document comprehension benchmark).
 

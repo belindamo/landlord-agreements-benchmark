@@ -1,4 +1,3 @@
-
 ## **Completed Experiments**
 
 ### **Experiment 1: LLM Judge Calibration for Consumer-Focused Legal AI** 

@@ -1,3 +1,5 @@
+DOUBLE CHECK YOUR WORK FOR LLM JUDGE EXPERIMENT AND MAKE SURE IT ACTUALLY WORKS. ADD TESTS
+
 ## **Completed Experiments**
 
 ### **Experiment 1: LLM Judge Calibration for Consumer-Focused Legal AI** 

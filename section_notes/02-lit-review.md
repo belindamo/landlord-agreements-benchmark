@@ -1,5 +1,7 @@
 # Literature Review
 
+# Literature Review
+
 ## Key Papers
 
 ### Legal Benchmarking and Evaluation
@@ -22,6 +24,15 @@
 - **Impact**: Shows promise for legal analytics while highlighting current limitations
 - **Relevance**: Validates scaling approaches and memorization concerns for legal AI
 
+**ContractNLI: Document-level NLI for Contracts** (Koreeda & Manning, 2021)
+- **Problem**: Contract review is time-consuming and expensive, creating barriers for smaller entities
+- **Prior Assumptions**: Legal AI focused on extraction tasks rather than understanding and inference
+- **Insight**: Document-level natural language inference can automate contract review by classifying hypotheses as entailed, contradicted, or not mentioned
+- **Technical Approach**: Multi-task learning with evidence identification as multi-label classification over spans
+- **Evaluation**: 607 annotated contracts with 17 hypotheses, evidence spans marked by experts
+- **Impact**: First dataset for document-level legal NLI, enables automated contract review and risk assessment
+- **Relevance**: Provides framework for comprehension-based evaluation rather than just extraction tasks
+
 ### Contract Analysis and Document Comprehension
 
 **A Benchmark for Lease Contract Review** (Leivaditi et al., 2020) ⭐ *Most Relevant*
@@ -42,6 +53,24 @@
 - **Impact**: Shows 20-point accuracy improvements with proper structuring and prompting
 - **Relevance**: Critical for our document processing and evaluation methodology
 
+**ACORD: Expert-Annotated Dataset for Legal Contract Clause Retrieval** (Wang et al., 2025)
+- **Problem**: Contract drafting relies on finding relevant precedent clauses, but no benchmarks exist for this critical task
+- **Prior Assumptions**: LLMs can generate contracts from scratch effectively
+- **Insight**: Lawyers rarely draft from scratch - clause retrieval from precedents is foundational to contract drafting
+- **Technical Approach**: Expert-annotated dataset with 114 queries and 126K+ query-clause pairs ranked 1-5 stars
+- **Evaluation**: Bi-encoder retrieval with LLM re-ranking, tested on complex clauses (indemnification, liability, etc.)
+- **Impact**: First expert-annotated benchmark for contract clause retrieval, reveals gaps in current LLM capabilities
+- **Relevance**: Demonstrates importance of precedent-based evaluation and expert annotation for legal AI
+
+**Contract Summarization for Party-Specific Obligations** (Sancheti et al., 2023)
+- **Problem**: Contracts are long and complex, making it difficult for parties to understand their specific obligations
+- **Prior Assumptions**: Generic summarization approaches work for legal contracts
+- **Insight**: Contract summarization should be party-specific, focusing on obligations, entitlements, and prohibitions for each party
+- **Technical Approach**: Two-module system with content categorizer and importance ranker, using expert pairwise comparisons
+- **Evaluation**: 293K sentence pairs from lease agreements annotated by legal experts for importance
+- **Impact**: First party-specific legal summarization dataset, shows domain expertise crucial for legal summarization
+- **Relevance**: Validates party-specific approach to legal document comprehension and expert annotation methodology
+
 ### Plain Language and Accessibility
 
 **Plain English Summarization of Contracts** (Manor & Li, 2019) ⭐ *Highly Relevant*
@@ -52,9 +81,21 @@
 
 **TermSight: Making Service Contracts Approachable** (Huang et al., 2025)
 - **Problem**: Terms of service are unreadable but legally binding
-- **Key Insight**: AI-powered reading interfaces can significantly reduce difficulty and increase user engagement
+- **Prior Assumptions**: Making legal documents accessible requires only simplification
+- **Key Insight**: AI-powered reading interfaces with visual summaries, categorization, and contextualized definitions significantly improve accessibility
+- **Technical Approach**: Multi-feature interface with relevance highlighting, power balance visualization, plain-language categorization, and contextual definitions
+- **Evaluation**: Within-subjects study (N=20) measuring reading difficulty and willingness to read ToS
 - **Impact**: Shows measurable improvements in user comprehension and willingness to read legal documents
-- **Relevance**: Validates user-centered approach to legal document accessibility
+- **Relevance**: Validates user-centered approach to legal document accessibility and multi-modal interface design
+
+**Terminators: Terms of Service Parsing and Auditing Agents** (Mridul et al., 2025)  
+- **Problem**: ToS documents are lengthy and written in complex legal language, difficult for users to understand
+- **Prior Assumptions**: ToS understanding is a black-box summarization problem
+- **Insight**: Breaking ToS analysis into interpretable steps (term extraction, verification, accountability planning) enhances auditability
+- **Technical Approach**: Modular agentic framework using LLMs with structured workflow to minimize hallucinations
+- **Evaluation**: Demonstrated on OpenAI ToS using GPT-4o, focus on auditability and transparency
+- **Impact**: Promotes ethical use through greater transparency and enables automated policy audits
+- **Relevance**: Shows promise of agentic approaches for legal document analysis and transparency
 
 ### LLM-as-Judge Evaluation
 
@@ -86,32 +127,40 @@
 
 ## Summary of Field
 
-The legal AI field shows three major research trends:
+The legal AI field shows four major research trends with emerging sophistication:
 
-**1. Specialized Legal Benchmarking**: Recognition that general language benchmarks inadequately measure legal AI capabilities. Multiple papers (LegalBench, LEXam, CaseHOLD) establish domain-specific evaluation as essential.
+**1. Specialized Legal Benchmarking**: Recognition that general language benchmarks inadequately measure legal AI capabilities. Multiple papers (LegalBench, LEXam, CaseHOLD, ContractNLI, ACORD) establish domain-specific evaluation as essential, with growing focus on expert annotation and real-world legal tasks.
 
-**2. Document-to-Human Communication**: Growing focus on making legal documents accessible to non-experts through plain language conversion (Manor & Li, TermSight) rather than just expert-level analysis.
+**2. Document-to-Human Communication**: Growing focus on making legal documents accessible to non-experts through plain language conversion (Manor & Li, TermSight, Terminators) rather than just expert-level analysis. Evolution from simple summarization to multi-modal interfaces and structured analysis.
 
 **3. LLM-as-Judge Evaluation**: Convergence on LLM judges as scalable evaluation method with strong human correlation when properly calibrated and prompted.
 
+**4. Task-Specific Legal AI**: Shift from generic NLP to specialized legal tasks like clause retrieval (ACORD), party-specific summarization (Sancheti et al.), and document-level inference (ContractNLI), recognizing unique requirements of legal work.
+
 **Common Technical Assumptions Across Literature**:
-- Expert annotation is necessary for legal AI datasets
-- Domain-specific approaches outperform general methods
-- Document structure significantly impacts LLM performance  
-- Plain language conversion requires specialized techniques beyond standard summarization
+- Expert annotation is necessary for legal AI datasets (validated by ACORD, CUAD, ContractNLI)
+- Domain-specific approaches outperform general methods (demonstrated across all benchmarks)
+- Document structure significantly impacts LLM performance (Braun et al., ContractNLI)
+- Plain language conversion requires specialized techniques beyond standard summarization (Manor & Li, TermSight)
 - LLM scaling generally improves legal task performance
+- Precedent-based work patterns are fundamental to legal practice (ACORD insights)
+- Party-specific analysis is crucial for contract understanding (Sancheti et al.)
 
 ## Gaps Identified
 
-**1. Consumer-Focused Legal AI**: Most work targets legal professionals rather than end consumers who need legal documents explained in accessible terms.
+**1. Consumer-Focused Legal AI**: Despite advances in accessibility (TermSight, Terminators), most work still targets legal professionals rather than end consumers who must live with contract consequences.
 
-**2. Landlord-Tenant Specific Analysis**: Limited work specifically on landlord-tenant agreements despite widespread consumer need. Leivaditi et al. (2020) is closest but focuses on technical extraction rather than comprehension.
+**2. Landlord-Tenant Specific Analysis**: Limited work specifically on landlord-tenant agreements despite widespread consumer need. Leivaditi et al. (2020) remains closest but focuses on technical extraction rather than comprehension. Other contract work (ACORD, CUAD) focuses on commercial contracts.
 
-**3. End-to-End Comprehension Evaluation**: Existing benchmarks test technical tasks (entity extraction, classification) rather than holistic document understanding and explanation.
+**3. End-to-End Comprehension Evaluation**: While ContractNLI advances document-level understanding, most benchmarks still test technical tasks (entity extraction, clause retrieval) rather than holistic consumer comprehension and actionable explanation.
 
-**4. Real-World Document Complexity**: Most datasets use clean, well-formatted documents rather than the complex, varied formatting found in actual rental agreements.
+**4. Real-World Document Complexity**: Most datasets use clean, well-formatted documents rather than the complex, varied formatting found in actual rental agreements. ACORD uses professional contract templates rather than consumer-facing documents.
 
-**5. LLM Judge Calibration for Legal Domain**: While general LLM judge frameworks exist, limited work on calibrating judges specifically for legal accuracy and plain language quality assessment.
+**5. LLM Judge Calibration for Legal Domain**: While general LLM judge frameworks exist, limited work on calibrating judges specifically for legal accuracy and plain language quality assessment in consumer contexts.
+
+**6. Integration of Multi-Modal Approaches**: TermSight shows promise for visual interfaces, but most legal AI remains text-only despite documents often containing complex formatting, tables, and visual elements crucial for understanding.
+
+**7. Validation of Consumer Understanding**: Limited empirical validation that AI-generated explanations actually improve consumer comprehension and decision-making, as opposed to professional efficiency.
 
 ## How Our Work Fits
 
@@ -126,11 +175,27 @@ Our landlord-tenant agreement benchmark addresses multiple identified gaps:
 - Uses LLM-as-judge methodology calibrated for legal accuracy and plain language quality
 - Addresses real-world document complexity with diverse formatting and clauses
 
-**Literature-Level Bit Flip**: Challenges the assumption that legal AI should focus on professional-level legal reasoning. Instead, we argue that the highest impact comes from making legal documents comprehensible to consumers who must live with the consequences of these agreements.
+**Literature-Level Bit Flip**: Challenges the assumption that legal AI should focus on professional-level legal reasoning (as in ACORD, ContractNLI) or technical extraction (as in CUAD). Instead, we argue that the highest impact comes from making legal documents comprehensible to consumers who must live with the consequences of these agreements.
 
-**Building on Established Methods**: Leverages proven approaches (expert annotation from CUAD, LLM judge evaluation from survey literature, plain language focus from Manor & Li) while addressing identified gaps in consumer-focused legal AI.
+**Building on Established Methods**: Leverages proven approaches from multiple sources:
+- Expert annotation methodology (CUAD, ACORD, ContractNLI)
+- LLM judge evaluation frameworks (Li et al., Sahoo et al.)
+- Plain language accessibility focus (Manor & Li, TermSight) 
+- Party-specific analysis (Sancheti et al.)
+- Document-level comprehension tasks (ContractNLI)
+While uniquely addressing identified gaps in consumer-focused legal AI.
+
+**Novel Methodological Contributions**:
+- First benchmark specifically for consumer comprehension of rental agreements
+- Integration of accessibility principles with rigorous evaluation methodology  
+- Real-world document complexity rather than clean professional templates
+- Validation framework for consumer understanding rather than professional efficiency
 
 This positions our work as both practically impactful (addressing real consumer needs) and methodologically novel (first comprehensive consumer-oriented legal document comprehension benchmark).
 
 ---
 *Enhanced using CS197 research methodology*
+
+
+---
+*This section is being enhanced by The Research Company AI Agent*
